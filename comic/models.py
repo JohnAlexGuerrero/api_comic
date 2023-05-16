@@ -3,6 +3,8 @@ from PIL import Image
 from io import BytesIO
 from django.core.files import File
 
+from character.models import Character
+
 class Comic(models.Model):
     title = models.CharField(max_length=50, unique=True)
     slug = models.SlugField()
@@ -48,4 +50,17 @@ class Comic(models.Model):
         return thumbnail
 
 
-
+class ComicCharacter(models.Model):
+        comic = models.ForeignKey(Comic, verbose_name=("comics"), on_delete=models.CASCADE)
+        character = models.ManyToManyField(Character, verbose_name=("characters"))
+    
+        class Meta:
+            verbose_name = ("CharacterComic")
+            verbose_name_plural = ("CharacterComics")
+    
+        def __str__(self):
+            return self.comic.title
+    
+        def get_absolute_url(self):
+            return f'http://127.0.0.1:8000/api/v1/characters/{self.comic.slug}/comics'
+        

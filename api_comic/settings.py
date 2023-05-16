@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     'comic',
     'collection',
+    'character',
 ]
 
 MIDDLEWARE = [

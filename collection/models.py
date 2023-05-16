@@ -34,7 +34,6 @@ class ComicCollection(models.Model):
         collections = {
             "id": self.comic.id,
             "title": self.comic.title,
-            #"thumbnail": self.comic.get_thumbnail(),
             "url": self.collection.get_absolute_url()
         }
         
